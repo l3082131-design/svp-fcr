@@ -1,0 +1,149 @@
+/* Variables para colores */
+:root {
+    --color-primary: #4a00e0;         /* Púrpura/Violeta para enlaces */
+    --color-background: #2B2828;      /* Fondo muy claro */
+    --color-card-bg: #ffffff;         /* Fondo blanco de la tarjeta */
+    --color-text: #2B2828;            /* Texto principal */
+    --color-placeholder: #999999;     /* Texto de placeholder */
+    --color-link-help: #666666;       /* Texto de ayuda (gris) */
+    --color-link-create: #4a00e0;     /* Enlace crear usuario */
+
+    /* Colores del botón (Ajustados para coincidir con la imagen y el requisito) */
+    --color-button-disabled: #e0e0e0; /* Gris muy claro (como en la imagen) */
+    --color-button-active: #ffc107;   /* Amarillo (como se solicitó) */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-background);
+    
+    /* --- PROPIEDADES PARA EL FONDO DE IMAGEN --- */
+    background-image: url('backgr.png'); /* ⬅️ Reemplaza 'fondo.jpg' con el nombre de tu archivo */
+    background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
+    background-position: center; /* Centra la imagen */
+    background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll (opcional) */
+    
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 450px;
+    padding-top: 40px; /* Más espacio arriba */
+}
+
+/* --- Encabezado --- */
+.header { text-align: center; padding: 20px 0; }
+.logo { width: 200px; height: auto; margin-bottom: 5px; }
+.header h1 { 
+    font-size: 1.5rem; 
+    color: #ffffff; /* ⬅️ CAMBIADO A BLANCO PURO */
+    font-weight: 600; 
+    margin: 0; 
+    padding-bottom: 20px; 
+}
+
+/* --- Caja de Login (La tarjeta blanca) --- */
+.login-box {
+    background-color: #2B2828;
+    padding: 30px 25px;
+    border-radius: 12px; /* Borde más redondeado */
+    /* Sombra suave y sutil, crucial para la apariencia de la imagen */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06); 
+    margin-top: 10px;
+}
+
+.login-box h2 { 
+    font-size: 1.8rem; 
+    color: #ffffff; 
+    font-weight: 700; /* Bold */
+    margin: 0 0 10px; 
+}
+.login-box p { 
+    color: #ffffff; 
+    font-size: 0.9rem; 
+    margin-bottom: 30px; 
+    line-height: 1.3;
+}
+
+/* --- Inputs y Grupos --- */
+.input-group {
+    display: flex; 
+    align-items: center; 
+    border-bottom: 1px solid #cccccc; /* Línea de separación clara */
+    margin-bottom: 5px; 
+    padding: 10px 0;
+}
+.input-group .icon { 
+    color: #ffffff; 
+    margin-right: 10px; 
+    font-size: 1.1rem; 
+}
+.input-group input { 
+    flex-grow: 1; 
+    border: none; 
+    padding: 5px 0; 
+    font-size: 1rem; 
+    outline: none; 
+
+    background-color: transparent; /* <-- Clave para que no se vea blanco */
+    color: #ffffff;               /* <-- Clave para que el texto escrito sea blanco */
+}
+.input-group input::placeholder {
+    color: #ffffff;
+}
+
+
+/* --- Enlaces de Ayuda --- */
+.link-help { 
+    display: block; 
+    text-align: left; 
+    color: #ffffff; 
+    font-size: 0.85rem; /* Fuente un poco más pequeña */
+    text-decoration: none; 
+    margin-bottom: 20px; 
+    padding-left: 30px; 
+}
+
+/* --- Botón Principal --- */
+.btn-primary {
+    width: 100%; 
+    padding: 14px; /* Un poco menos de padding que antes */
+    color: var(--color-text); /* Texto oscuro para ambos estados */
+    border: none; 
+    border-radius: 50px; 
+    font-size: 1rem; 
+    font-weight: bold; 
+    margin-top: 25px; 
+    transition: background-color 0.3s;
+}
+
+/* Estilos de estado del botón */
+.btn-disabled {
+    background-color: var(--color-button-disabled); /* Gris muy claro */
+    cursor: not-allowed;
+    color: #2B2828; /* Texto gris más oscuro para el estado deshabilitado */
+}
+
+.btn-active {
+    background-color: var(--color-button-active); /* Amarillo */
+    color: var(--color-text); 
+    cursor: pointer;
+}
+.btn-active:hover { background-color: #ffca2c; }
+
+/* --- Enlace "Crear usuario" --- */
+.link-create { 
+    display: block; 
+    text-align: center; 
+    margin-top: 25px; 
+    color: #ffffff; 
+    font-size: 1rem; 
+    text-decoration: none; 
+    font-weight: bold; 
+}

